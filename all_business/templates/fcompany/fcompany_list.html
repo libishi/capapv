@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block content %}
+
+    <h2>Here are all user profiles: </h2>
+    <div>
+        <ul>
+            {% for profile in object_list %}
+                <li>{{ profile.gm_name }} {{ profile.gm_email }} | 
+                    <a href="{% url 'fcompany-update' profile.pk %}"> edit </a>
+                    <a href="{% url 'fcompany-delete' profile.pk %}"> delete </a>
+                </li>
+            {% empty %}
+                <li>No profile yet.</li>
+            {% endfor %}
+
+        </ul>
+        <p>
+            <a href="{% url 'fcompany-add' %}">add a profile</a>
+        </p>
+    </div>
+{% endblock %}
